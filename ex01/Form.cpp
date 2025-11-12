@@ -15,7 +15,13 @@ Form &Form::operator=(const Form &other)
 }
 
 Form::Form(const std::string name, int signGrade, int execGrade)
-    : name(name), is_signed(false), sign_grade(signGrade), exec_grade(execGrade) {}
+    : name(name), is_signed(false), sign_grade(signGrade), exec_grade(execGrade)
+{
+    if (sign_grade < 1 || exec_grade < 1)
+        throw Form::GradeTooHighException(name);
+    if (sign_grade > 150 || exec_grade > 150)
+        throw Form::GradeTooLowException(name);
+}
 
 
 Form::~Form() {}
@@ -38,6 +44,50 @@ int Form::getSignGrade() const
 int Form::getExecGrade() const
 {
     return exec_grade;
+}
+
+Form::GradeTooHighException::GradeTooHighException() : msg("Error: Grade is too high") {}
+
+Form::GradeTooHighException::GradeTooHighException(const GradeTooHighException &other) : msg(other.msg) {}
+
+Form::GradeTooHighException &Form::GradeTooHighException::operator=(const GradeTooHighException &other)
+{
+    if (this != &other)
+    {
+        msg = other.msg;
+    }
+    return *this;
+}
+
+Form::GradeTooHighException::~GradeTooHighException() {}
+
+Form::GradeTooHighException::GradeTooHighException(const std::string name) : msg("Error: Grade is too high for \"" + name + "\"") {}
+
+const char *Form::GradeTooHighException::what() const noexcept
+{
+    return msg.c_str();
+}
+
+Form::GradeTooLowException::GradeTooLowException() : msg("Error: Grade is too low") {}
+
+Form::GradeTooLowException::GradeTooLowException(const GradeTooLowException &other) : msg(other.msg) {}
+
+Form::GradeTooLowException &Form::GradeTooLowException::operator=(const GradeTooLowException &other)
+{
+    if (this != &other)
+    {
+        msg = other.msg;
+    }
+    return *this;
+}
+
+Form::GradeTooLowException::~GradeTooLowException() {}
+
+Form::GradeTooLowException::GradeTooLowException(const std::string name) : msg("Error: Grade is too low for \"" + name + "\"") {}
+
+const char *Form::GradeTooLowException::what() const noexcept
+{
+    return msg.c_str();
 }
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
