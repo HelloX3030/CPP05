@@ -2,6 +2,7 @@
 
 #include <string>
 #include <exception>
+#include <iostream>
 
 class Bureaucrat
 {
@@ -22,4 +23,14 @@ class Bureaucrat
         // Functions
         std::string getName() const;
         int getGrade() const;
+
+        class GradeTooHighException : public std::exception {
+            public:
+                const char* what() const noexcept override;
+        };
+
+        class GradeTooLowException : public std::exception {
+            public:
+                const char* what() const noexcept override;
+        };
 };

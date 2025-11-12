@@ -17,7 +17,10 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 {
-    
+    if (grade < 1)
+        throw GradeTooHighException();
+    if (grade > 150)
+        throw GradeTooLowException();
 }
 
 std::string Bureaucrat::getName() const
@@ -28,4 +31,12 @@ std::string Bureaucrat::getName() const
 int Bureaucrat::getGrade() const
 {
     return grade;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const noexcept {
+    return "Grade is too high";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const noexcept {
+    return "Grade is too low";
 }
