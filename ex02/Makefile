@@ -10,10 +10,10 @@ vpath %.hpp include/
 vpath %.cpp src/
 
 # .h and .hpp files
-H_FILES := Bureaucrat.hpp Form.hpp
+H_FILES := Bureaucrat.hpp AForm.hpp
 
 # .cpp source files
-SRC_FILES := main.cpp Bureaucrat.cpp Form.cpp
+SRC_FILES := main.cpp Bureaucrat.cpp AForm.cpp
 
 # Object directory and object files
 OBJ_DIR := obj
