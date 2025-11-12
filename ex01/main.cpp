@@ -25,6 +25,13 @@ int main(void)
     {
         Form f("normal form", 75, 75);
         std::cout << f << std::endl;
+        Bureaucrat b("Normal Bureaucrat", 75);
+        b.signForm(f);
+        b--;
+        b.signForm(f);
+        b++;
+        b++;
+        b.signForm(f);
     }
     catch(const std::exception& e)
     {

@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150) {}
 
@@ -57,6 +58,19 @@ Bureaucrat Bureaucrat::operator--(int) {
     Bureaucrat temp = *this;
     --(*this);
     return temp;
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout << name << " signed " << form.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException() : msg("Error: Grade too high") { }

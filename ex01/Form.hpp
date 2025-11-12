@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 
+class Bureaucrat;
+
 class Form
 {
 private:
@@ -27,6 +29,7 @@ public:
     bool getIsSigned() const;
     int getSignGrade() const;
     int getExecGrade() const;
+    void beSigned(const Bureaucrat &bureaucrat);
 
     class GradeTooHighException : public std::exception
     {
@@ -61,6 +64,7 @@ public:
 
             // Special Constructors
             GradeTooLowException(const std::string name);
+            GradeTooLowException(const std::string name, const std::string bureaucratName);
 
             // Functions
             const char *what() const noexcept override;

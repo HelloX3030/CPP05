@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form() : name("Default Form"), is_signed(false), sign_grade(150), exec_grade(150) {}
 
@@ -46,6 +47,16 @@ int Form::getExecGrade() const
     return exec_grade;
 }
 
+void Form::beSigned(const Bureaucrat &bureaucrat)
+{
+    if (bureaucrat.getGrade() <= sign_grade)
+    {
+        is_signed = true;
+    }
+    else
+        throw Form::GradeTooLowException(name, bureaucrat.getName());
+}
+
 Form::GradeTooHighException::GradeTooHighException() : msg("Error: Grade is too high") {}
 
 Form::GradeTooHighException::GradeTooHighException(const GradeTooHighException &other) : msg(other.msg) {}
@@ -85,6 +96,9 @@ Form::GradeTooLowException::~GradeTooLowException() {}
 
 Form::GradeTooLowException::GradeTooLowException(const std::string name) : msg("Error: Grade is too low for \"" + name + "\"") {}
 
+Form::GradeTooLowException::GradeTooLowException(const std::string name, const std::string bureaucratName)
+    : msg("Error: Grade is too low for \"" + name + "\" when signed by \"" + bureaucratName + "\"") {}
+
 const char *Form::GradeTooLowException::what() const noexcept
 {
     return msg.c_str();
@@ -92,9 +106,9 @@ const char *Form::GradeTooLowException::what() const noexcept
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
-    os << "Form Name: " << form.getName() << "\n"
-       << "Is Signed: " << (form.getIsSigned() ? "Yes" : "No") << "\n"
-       << "Sign Grade: " << form.getSignGrade() << "\n"
-       << "Execution Grade: " << form.getExecGrade();
+    os << "(\"" << form.getName()
+       << "\" Is Signed: " << (form.getIsSigned() ? "Yes" : "No")
+       << " | Sign Grade: " << form.getSignGrade()
+       << " | Execution Grade: " << form.getExecGrade() << ")";
     return os;
 }
