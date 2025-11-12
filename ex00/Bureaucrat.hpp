@@ -24,13 +24,39 @@ class Bureaucrat
         std::string getName() const;
         int getGrade() const;
 
-        class GradeTooHighException : public std::exception {
-            public:
-                const char* what() const noexcept override;
-        };
+         class GradeTooHighException : public std::exception {
+            private:
+                std::string msg;
 
-        class GradeTooLowException : public std::exception {
             public:
+                // Constructors
+                GradeTooHighException();
+                GradeTooHighException(const GradeTooHighException& other);
+                GradeTooHighException& operator=(const GradeTooHighException& other);
+                ~GradeTooHighException();
+
+                // Special Constructor
+                GradeTooHighException(const std::string& name);
+
+                // Functions
                 const char* what() const noexcept override;
-        };
+            };
+
+            class GradeTooLowException : public std::exception {
+            private:
+                std::string msg;
+
+            public:
+                // Constructors
+                GradeTooLowException();
+                GradeTooLowException(const GradeTooLowException& other);
+                GradeTooLowException& operator=(const GradeTooLowException& other);
+                ~GradeTooLowException();
+
+                // Special Constructor
+                GradeTooLowException(const std::string& name);
+
+                // Functions
+                const char* what() const noexcept override;
+            };
 };
