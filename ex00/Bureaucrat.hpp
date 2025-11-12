@@ -64,3 +64,5 @@ class Bureaucrat
                 const char* what() const noexcept override;
             };
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);

@@ -59,7 +59,7 @@ Bureaucrat Bureaucrat::operator--(int) {
     return temp;
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException() : msg("Grade too high") { }
+Bureaucrat::GradeTooHighException::GradeTooHighException() : msg("Error: Grade too high") { }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const GradeTooHighException& other)
 {
@@ -79,10 +79,10 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException() {}
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& name)
 {
-    msg = "Grade too high for Bureaucrat \"" + name + "\"";
+    msg = "Error: Grade too high for Bureaucrat \"" + name + "\"";
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException() : msg("Grade too low") {}
+Bureaucrat::GradeTooLowException::GradeTooLowException() : msg("Error: Grade too low") {}
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(const GradeTooLowException& other)
 {
@@ -95,11 +95,16 @@ const char* Bureaucrat::GradeTooHighException::what() const noexcept {
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& name)
 {
-    msg = "Grade too low for Bureaucrat \"" + name + "\"";
+    msg = "Error: Grade too low for Bureaucrat \"" + name + "\"";
 }
 
 Bureaucrat::GradeTooLowException::~GradeTooLowException() {}
 
 const char* Bureaucrat::GradeTooLowException::what() const noexcept {
     return msg.c_str();
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
+    os << b.getName() << ", grade " << b.getGrade();
+    return os;
 }
