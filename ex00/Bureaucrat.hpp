@@ -23,6 +23,10 @@ class Bureaucrat
         // Functions
         std::string getName() const;
         int getGrade() const;
+        Bureaucrat& operator++();
+        Bureaucrat operator++(int);
+        Bureaucrat& operator--();
+        Bureaucrat operator--(int);
 
          class GradeTooHighException : public std::exception {
             private:

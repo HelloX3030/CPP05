@@ -33,6 +33,32 @@ int Bureaucrat::getGrade() const
     return grade;
 }
 
+Bureaucrat& Bureaucrat::operator++() {
+    if (grade <= 1)
+        throw GradeTooHighException(name);
+    --grade;
+    return *this;
+}
+
+Bureaucrat Bureaucrat::operator++(int) {
+    Bureaucrat temp = *this;
+    ++(*this);
+    return temp;
+}
+
+Bureaucrat &Bureaucrat::operator--() {
+    if (grade >= 150)
+        throw GradeTooLowException(name);
+    ++grade;
+    return *this;
+}
+
+Bureaucrat Bureaucrat::operator--(int) {
+    Bureaucrat temp = *this;
+    --(*this);
+    return temp;
+}
+
 Bureaucrat::GradeTooHighException::GradeTooHighException() : msg("Grade too high") { }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const GradeTooHighException& other)
