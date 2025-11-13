@@ -68,6 +68,7 @@ void AForm::execute(const Bureaucrat &executor) const
     if (!is_signed)
         throw std::runtime_error("Error: Form is not signed");
     special_action();
+    std::cout << "Form \"" << name << "\" executed by \"" << executor.getName() << "\"" << std::endl;
 }
 
 AForm::GradeTooHighException::GradeTooHighException() : msg("Error: Grade is too high") {}

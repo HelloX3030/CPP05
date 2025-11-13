@@ -24,7 +24,7 @@ int main(void)
     {
         ShrubberyCreationForm h("home2");
         std::cout << h << std::endl;
-        Bureaucrat john("John Smith 2", 1);
+        Bureaucrat john("John Dumb 2", 146);
         std::cout << john << std::endl;
         john.signForm(h);
         h.execute(john);
@@ -39,7 +39,7 @@ int main(void)
     {
         ShrubberyCreationForm h("home3");
         std::cout << h << std::endl;
-        Bureaucrat john("John Dumb 3", 146);
+        Bureaucrat john("John Smith 3", 1);
         std::cout << john << std::endl;
         john.signForm(h);
         h.execute(john);
