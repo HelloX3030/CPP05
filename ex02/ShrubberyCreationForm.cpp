@@ -4,7 +4,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target 
 {
 }
 
-void ShrubberyCreationForm::special_action()
+void ShrubberyCreationForm::special_action() const
 {
     
 }

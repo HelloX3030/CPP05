@@ -4,7 +4,7 @@
 #include <exception>
 #include <iostream>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -29,7 +29,7 @@ class Bureaucrat
         Bureaucrat operator++(int);
         Bureaucrat& operator--();
         Bureaucrat operator--(int);
-        void signForm(Form &form);
+        void signForm(AForm &form);
 
          class GradeTooHighException : public std::exception {
             private:

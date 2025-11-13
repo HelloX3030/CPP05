@@ -3,13 +3,11 @@
 
 AForm::AForm() : name("Default AForm"), is_signed(false), sign_grade(150), exec_grade(150)
 {
-    special_action();
 }
 
 AForm::AForm(const AForm &other)
     : name(other.name), is_signed(other.is_signed), sign_grade(other.sign_grade), exec_grade(other.exec_grade)
 {
-    special_action();
 }
 
 AForm &AForm::operator=(const AForm &other)
@@ -28,7 +26,6 @@ AForm::AForm(const std::string name, int signGrade, int execGrade)
         throw AForm::GradeTooHighException(name);
     if (sign_grade > 150 || exec_grade > 150)
         throw AForm::GradeTooLowException(name);
-    special_action();
 }
 
 
@@ -66,7 +63,11 @@ void AForm::beSigned(const Bureaucrat &bureaucrat)
 
 void AForm::execute(const Bureaucrat &executor) const
 {
-    
+    if (executor.getGrade() > exec_grade)
+        throw AForm::GradeTooLowException(name, executor.getName());
+    if (!is_signed)
+        throw std::runtime_error("Error: Form is not signed");
+    special_action();
 }
 
 AForm::GradeTooHighException::GradeTooHighException() : msg("Error: Grade is too high") {}

@@ -25,7 +25,7 @@ public:
     AForm(const std::string name, int signGrade, int execGrade);
 
     // Functions
-    virtual void special_action() = 0;
+    virtual void special_action() const = 0;
     std::string getName() const;
     bool getIsSigned() const;
     int getSignGrade() const;

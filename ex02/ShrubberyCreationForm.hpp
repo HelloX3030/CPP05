@@ -6,7 +6,7 @@
 class ShrubberyCreationForm : public AForm
 {
     private:
-        void special_action() override;
+        void special_action() const override;
 
     public:
         ShrubberyCreationForm(std::string target);
