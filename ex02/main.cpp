@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main(void)
 {
@@ -48,5 +49,38 @@ int main(void)
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
+    }
+    std::cout << std::endl << "Test4" << std::endl;
+    try
+    {
+        RobotomyRequestForm r("Robotus Formu 0");
+        std::cout << r << std::endl;
+        Bureaucrat john("John Robot 0", 1);
+        std::cout << john << std::endl;
+        john.signForm(r);
+        r.execute(john);
+        std::cout << r << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    std::cout << std::endl << "Test5" << std::endl;
+    for (int i = 0; i < 3; ++i)
+    {
+        try
+        {
+            RobotomyRequestForm r("Robotus Formu " + std::to_string(i));
+            std::cout << r << std::endl;
+            Bureaucrat john("John Robot " + std::to_string(i), 1);
+            john.signForm(r);
+            r.execute(john);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
     }
 }
