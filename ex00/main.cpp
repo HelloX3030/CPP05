@@ -2,6 +2,7 @@
 
 int main(void)
 {
+    std::cout << "Test1" << std::endl;
     try
     {
         Bureaucrat b("Smart af", -100);
@@ -11,6 +12,7 @@ int main(void)
     {
         std::cerr << e.what() << '\n';
     }
+    std::cout << std::endl <<"Test2" << std::endl;
     try
     {
         Bureaucrat b("Dumb af", 100000);
@@ -20,6 +22,7 @@ int main(void)
     {
         std::cerr << e.what() << '\n';
     }
+    std::cout << std::endl <<"Test3" << std::endl;
     try
     {
         Bureaucrat b("smartus rex", 1);
@@ -31,6 +34,7 @@ int main(void)
     {
         std::cerr << e.what() << '\n';
     }
+    std::cout << std::endl <<"Test4" << std::endl;
     try
     {
         Bureaucrat b("dumbus maximus", 150);
@@ -42,6 +46,7 @@ int main(void)
     {
         std::cerr << e.what() << '\n';
     }
+    std::cout << std::endl <<"Test5" << std::endl;
     try
     {
         Bureaucrat b("new bureaucrat", 75);

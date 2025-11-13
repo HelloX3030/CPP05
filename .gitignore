@@ -42,3 +42,5 @@
 
 # Custom
 obj/
+
+.vscode
